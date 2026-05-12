@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.ScrollPane?>
+<?import java.lang.String?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<BorderPane prefHeight="720.0"
+            prefWidth="1200.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.visapp.controller.DashboardController"
+            stylesheets="@dashboard.css"
+            style="-fx-background-color: #f1f5f9;">
+
+    <top>
+
+        <MenuBar style="-fx-background-color: #0f172a; -fx-border-color: #1e293b;-fx-border-width: 0 0 1 0;">
+            <menus>
+                <Menu text="File">
+                    <items>
+                        <MenuItem text="Dashboard"/>
+                        <MenuItem text="Logout" onAction="#handleLogout"/>
+                        <SeparatorMenuItem />
+                        <MenuItem text="Exit" onAction="#handleLogout"/>
+                    </items>
+                </Menu>
+
+                <Menu text="Modules">
+                    <items>
+                        <MenuItem text="Workshop" onAction="#openWorkshopModule"/>
+                        <MenuItem text="Customer" onAction="#openCustomerModule"/>
+                        <MenuItem text="Insurance" onAction="#openInsuranceModule"/>
+                        <MenuItem text="Police" onAction="#openPoliceModule"/>
+                    </items>
+                </Menu>
+
+                <Menu text="Help">
+                    <items>
+                        <MenuItem text="About"/>
+                    </items>
+                </Menu>
+
+            </menus>
+
+        </MenuBar>
+
+    </top>
+    <!-- ========================= -->
+    <!-- LEFT NAVIGATION BAR -->
+    <!-- ========================= -->
+
+    <left>
+        <VBox prefWidth="260"
+              spacing="15"
+              style="-fx-background-color: #0f172a;
+                 -fx-padding: 15 15 15 15;">
+
+        <!-- LOGO / TITLE -->
+
+            <VBox spacing="8">
+
+                <Label text="VIS SYSTEM"
+                       style="-fx-text-fill: white;
+                          -fx-font-size: 28px;
+                          -fx-font-weight: bold;" />
+
+                <Label text="Vehicle Identification System"
+                       style="-fx-text-fill: #94a3b8;
+                          -fx-font-size: 13px;" />
+
+            </VBox>
+
+            <Separator style="-fx-background-color: #334155;" />
+
+            <!-- NAVIGATION TITLE -->
+
+            <Label text="NAVIGATION"
+                   style="-fx-text-fill: #64748b;
+                          -fx-font-size: 12px;
+                          -fx-font-weight: bold;" />
+
+            <!-- USERS -->
+
+            <Button text="Users Module"
+                    onAction="#openUsersModule"
+                    prefWidth="220"
+                    prefHeight="45"
+                    style="-fx-background-color: #1e293b;
+                           -fx-text-fill: white;
+                           -fx-font-size: 14px;
+                           -fx-background-radius: 12;
+                           -fx-cursor: hand;" />
+
+            <!-- WORKSHOP -->
+
+            <Button text="Workshop Module"
+                    onAction="#openWorkshopModule"
+                    prefWidth="220"
+                    prefHeight="45"
+                    style="-fx-background-color: #1e293b;
+                           -fx-text-fill: white;
+                           -fx-font-size: 14px;
+                           -fx-background-radius: 12;
+                           -fx-cursor: hand;" />
+
+            <!-- CUSTOMER -->
+
+            <Button text="Customer Module"
+                    onAction="#openCustomerModule"
+                    prefWidth="220"
+                    prefHeight="45"
+                    style="-fx-background-color: #1e293b;
+                           -fx-text-fill: white;
+                           -fx-font-size: 14px;
+                           -fx-background-radius: 12;
+                           -fx-cursor: hand;" />
+
+            <!-- INSURANCE -->
+
+            <Button text="Insurance Module"
+                    onAction="#openInsuranceModule"
+                    prefWidth="220"
+                    prefHeight="45"
+                    style="-fx-background-color: #1e293b;
+                           -fx-text-fill: white;
+                           -fx-font-size: 14px;
+                           -fx-background-radius: 12;
+                           -fx-cursor: hand;" />
+
+            <!-- POLICE -->
+
+            <Button text="Police Module"
+                    onAction="#openPoliceModule"
+                    prefWidth="220"
+                    prefHeight="45"
+                    style="-fx-background-color: #1e293b;
+                           -fx-text-fill: white;
+                           -fx-font-size: 14px;
+                           -fx-background-radius: 12;
+                           -fx-cursor: hand;" />
+            <!-- EXIT -->
+
+            <Button text="Exit"
+                    onAction="#handleLogout"
+                    prefWidth="220"
+                    prefHeight="45"
+                    style="-fx-background-color: #dc2626;
+                           -fx-text-fill: white;
+                           -fx-font-size: 14px;
+                           -fx-font-weight: bold;
+                           -fx-background-radius: 12;
+                           -fx-cursor: hand;">
+
+                <effect>
+                    <DropShadow color="#dc262655"
+                                radius="10"/>
+                </effect>
+
+            </Button>
+
+        </VBox>
+
+    </left>
+
+    <!-- ========================= -->
+    <!-- CENTER CONTENT -->
+    <!-- ========================= -->
+
+    <center>
+
+        <AnchorPane style="-fx-padding: 30;">
+
+            <!-- TOP HEADER -->
+
+            <VBox layoutX="40" layoutY="30" spacing="5">
+
+                <Label text="Dashboard"
+                       style="-fx-font-size: 34px;
+                              -fx-font-weight: bold;
+                              -fx-text-fill: #0f172a;" />
+
+                <Label text="Vehicle Identification System Overview"
+                       style="-fx-font-size: 15px;
+                              -fx-text-fill: #64748b;" />
+
+            </VBox>
+
+            <!-- SUMMARY CARDS -->
+
+            <HBox layoutX="40"
+                  layoutY="130"
+                  spacing="25">
+
+                <!-- VEHICLES -->
+
+                <VBox prefWidth="220"
+                      prefHeight="140"
+                      alignment="CENTER"
+                      spacing="15"
+                      style="-fx-background-color: white;
+                             -fx-background-radius: 20;">
+
+                    <effect>
+                        <DropShadow color="#00000015"
+                                    radius="18"/>
+                    </effect>
+
+                    <Label text="Total Vehicles"
+                           style="-fx-font-size: 16px;
+                                  -fx-text-fill: #64748b;" />
+
+                    <Label fx:id="totalVehiclesLabel"
+                           text="Vehicles: 0"
+                           style="-fx-font-size: 28px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #2563eb;" />
+
+                </VBox>
+
+                <!-- CUSTOMERS -->
+
+                <VBox prefWidth="220"
+                      prefHeight="140"
+                      alignment="CENTER"
+                      spacing="15"
+                      style="-fx-background-color: white;
+                             -fx-background-radius: 20;">
+
+                    <effect>
+                        <DropShadow color="#00000015"
+                                    radius="18"/>
+                    </effect>
+
+                    <Label text="Total Customers"
+                           style="-fx-font-size: 16px;
+                                  -fx-text-fill: #64748b;" />
+
+                    <Label fx:id="totalCustomersLabel"
+                           text="Customers: 0"
+                           style="-fx-font-size: 28px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #16a34a;" />
+
+                </VBox>
+
+                <!-- POLICIES -->
+
+                <VBox prefWidth="220"
+                      prefHeight="140"
+                      alignment="CENTER"
+                      spacing="15"
+                      style="-fx-background-color: white;
+                             -fx-background-radius: 20;">
+
+                    <effect>
+                        <DropShadow color="#00000015"
+                                    radius="18"/>
+                    </effect>
+
+                    <Label text="Insurance Policies"
+                           style="-fx-font-size: 16px;
+                                  -fx-text-fill: #64748b;" />
+
+                    <Label fx:id="totalPoliciesLabel"
+                           text="Policies: 0"
+                           style="-fx-font-size: 28px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #f59e0b;" />
+
+                </VBox>
+
+                <!-- REPORTS -->
+
+                <VBox prefWidth="220"
+                      prefHeight="140"
+                      alignment="CENTER"
+                      spacing="15"
+                      style="-fx-background-color: white;
+                             -fx-background-radius: 20;">
+
+                    <effect>
+                        <DropShadow color="#00000015"
+                                    radius="18"/>
+                    </effect>
+
+                    <Label text="Police Reports"
+                           style="-fx-font-size: 16px;
+                                  -fx-text-fill: #64748b;" />
+
+                    <Label fx:id="totalReportsLabel"
+                           text="Reports: 0"
+                           style="-fx-font-size: 28px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #dc2626;" />
+
+                </VBox>
+
+            </HBox>
+            <VBox spacing="10" prefWidth="200"  layoutX="30" layoutY="300"
+                  style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 15;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0, 0, 5);">
+
+                <Label text="Vehicles"
+                       style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+                <ScrollPane fitToWidth="true" prefHeight="220"
+                            style="-fx-background: transparent; -fx-background-color: transparent;
+                                   -fx-border-color: transparent;">
+
+                    <content>
+                        <VBox fx:id="vehicleListBox" spacing="8"  prefWidth="360" style="-fx-padding: 10;
+                              -fx-font-weight: bold"/>
+                    </content>
+
+                </ScrollPane>
+
+                <Pagination fx:id="vehiclePagination"
+                            pageCount="5"
+                            currentPageIndex="0"
+                            style="-fx-page-information-visible: false;"/>
+
+            </VBox>
+
+            <!-- ========================= -->
+            <!-- DATABASE VIEWS SECTION -->
+            <!-- ========================= -->
+
+            <VBox spacing="15"
+                  layoutX="280"
+                  layoutY="280"
+                  prefWidth="720">
+
+                <Label text="Database Views"
+                       style="-fx-font-size: 20px;
+                  -fx-font-weight: bold;
+                  -fx-text-fill: #0f172a;" />
+
+                <!-- ================================= -->
+                <!-- VEHICLE OWNER VIEW -->
+                <!-- ================================= -->
+
+                <TitledPane text="Vehicle Owner View"
+                            expanded="true">
+
+                    <content>
+
+                        <TableView fx:id="vehicleOwnerTable"
+                                   prefHeight="220">
+
+                            <columns>
+
+                                <TableColumn fx:id="colVehicleId"
+                                             text="Vehicle ID"
+                                             prefWidth="80"/>
+
+                                <TableColumn fx:id="colRegistration"
+                                             text="Registration"
+                                             prefWidth="120"/>
+
+                                <TableColumn fx:id="colMake"
+                                             text="Make"
+                                             prefWidth="100"/>
+
+                                <TableColumn fx:id="colModel"
+                                             text="Model"
+                                             prefWidth="100"/>
+
+                                <TableColumn fx:id="colYear"
+                                             text="Year"
+                                             prefWidth="80"/>
+
+                                <TableColumn fx:id="colCustomerId"
+                                             text="Customer ID"
+                                             prefWidth="90"/>
+
+                                <TableColumn fx:id="colOwnerName"
+                                             text="Owner Name"
+                                             prefWidth="140"/>
+
+                                <TableColumn fx:id="colPhone"
+                                             text="Phone"
+                                             prefWidth="120"/>
+
+                                <TableColumn fx:id="colEmail"
+                                             text="Email"
+                                             prefWidth="180"/>
+
+                            </columns>
+
+                        </TableView>
+
+                    </content>
+
+                </TitledPane>
+
+                <!-- ================================= -->
+                <!-- ACTIVE INSURANCE VIEW -->
+                <!-- ================================= -->
+
+                <TitledPane text="Active Insurance View"
+                            expanded="true">
+
+                    <content>
+
+                        <TableView fx:id="insuranceViewTable"
+                                   prefHeight="220">
+
+                            <columns>
+
+                                <TableColumn fx:id="colPolicyId"
+                                             text="Policy ID"
+                                             prefWidth="80"/>
+
+                                <TableColumn fx:id="colPolicyNumber"
+                                             text="Policy Number"
+                                             prefWidth="140"/>
+
+                                <TableColumn fx:id="colInsuranceCompany"
+                                             text="Insurance Company"
+                                             prefWidth="180"/>
+
+                                <TableColumn fx:id="colStartDate"
+                                             text="Start Date"
+                                             prefWidth="120"/>
+
+                                <TableColumn fx:id="colEndDate"
+                                             text="End Date"
+                                             prefWidth="120"/>
+
+                                <TableColumn fx:id="colVehicleReg"
+                                             text="Registration"
+                                             prefWidth="130"/>
+
+                                <TableColumn fx:id="colVehicleMake"
+                                             text="Make"
+                                             prefWidth="100"/>
+
+                                <TableColumn fx:id="colVehicleModel"
+                                             text="Model"
+                                             prefWidth="100"/>
+
+                            </columns>
+
+                        </TableView>
+
+                    </content>
+
+                </TitledPane>
+
+                <!-- ================================= -->
+                <!-- UNPAID VIOLATIONS VIEW -->
+                <!-- ================================= -->
+
+                <TitledPane text="Unpaid Violations View"
+                            expanded="true">
+
+                    <content>
+
+                        <TableView fx:id="violationViewTable"
+                                   prefHeight="220">
+
+                            <columns>
+
+                                <TableColumn fx:id="colViolationId"
+                                             text="Violation ID"
+                                             prefWidth="100"/>
+
+                                <TableColumn fx:id="colViolationVehicleId"
+                                             text="Vehicle ID"
+                                             prefWidth="100"/>
+
+                                <TableColumn fx:id="colViolationType"
+                                             text="Violation Type"
+                                             prefWidth="180"/>
+
+                                <TableColumn fx:id="colFineAmount"
+                                             text="Fine Amount"
+                                             prefWidth="120"/>
+
+                                <TableColumn fx:id="colViolationStatus"
+                                             text="Status"
+                                             prefWidth="120"/>
+
+                            </columns>
+
+                        </TableView>
+
+                    </content>
+
+                </TitledPane>
+
+            </VBox>
+        </AnchorPane>
+
+    </center>
+
+</BorderPane>

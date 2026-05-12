@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx/21"
+            fx:controller="com.example.visapp.controller.InsuranceController"
+            style="-fx-background-color: #f4f6f9;">
+    <!-- ================= TOP BAR ================= -->
+    <top>
+        <HBox spacing="10"
+              style="-fx-background-color: white; -fx-padding: 12;">
+
+            <Label text="Insurance and Claim Management System"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <TextField fx:id="txtSearch"
+                       promptText="Search..."
+                       prefWidth="250"/>
+
+            <Button text="Search"
+                    fx:id="btnSearch"/>
+
+            <Button text="Exit"
+                    fx:id="btnExit"
+                    onAction="#goToDashboard"
+                    style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+        </HBox>
+    </top>
+
+    <!-- ================= LEFT: POLICY CRUD ================= -->
+    <left>
+        <VBox spacing="10"
+              prefWidth="300"
+              style="-fx-background-color: #1f2a44; -fx-padding: 15;">
+
+            <Label text="Insurance Policy Management"
+                   style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+            <Label text="Policy Id:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtPolicyId"
+                       promptText="Enter policy Id"/>
+
+            <Label text="Vehicle Id:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtVehicleId"
+                       promptText="Enter vehicle Id"/>
+
+            <Label text="Insurance Company:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtProvider"
+                       promptText="Enter insurance company"/>
+
+            <Label text="Policy Number"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtPolicyNumber"
+                       promptText="Enter policy number"/>
+
+            <Label text="Policy start date:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <DatePicker fx:id="dpStartDate"
+                        promptText="Enter policy start date"/>
+
+            <Label text="Policy end date:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <DatePicker fx:id="dpEndDate"
+                        promptText="Enter policy end date"/>
+
+            <Label text="Coverage details"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtCoverageDetails"
+                       promptText="Enter coverage details/type"/>
+
+            <HBox spacing="10">
+                <Button text="Add" fx:id="btnAddPolicy"
+                        onAction="#addPolicy"
+                        style="-fx-background-color: green; -fx-font-weight: bold; -fx-text-fill: white;"/>
+
+                <Button text="Update"
+                        fx:id="btnUpdatePolicy"
+                        onAction="#updatePolicy"
+                        style="-fx-background-color: blue; -fx-font-weight: bold; -fx-text-fill: white;"/>
+
+                <Button text="Delete"
+                        fx:id="btnDeletePolicy"
+                        onAction="#deletePolicy"
+                        style="-fx-background-color: red; -fx-font-weight: bold; -fx-text-fill: white;"/>
+
+                <Button text="Clear" fx:id="btnClearPolicy"
+                        onAction="#clearPolicy"
+                        style="-fx-background-color: black; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            </HBox>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="15"
+              style="-fx-padding: 15;">
+            <Label text="Insurance Module - Policies and Claims" />
+            <TitledPane text="Insurance Policies"
+                        expanded="true">
+            <TableView fx:id="policyTable"
+                       prefHeight="250">
+                <columns>
+                    <TableColumn fx:id="colPolicyId" text="Policy ID" prefWidth="80"/>
+                    <TableColumn fx:id="colVehicleId" text="Vehicle ID" prefWidth="80"/>
+                    <TableColumn fx:id="colProvider" text="Insurance Company" prefWidth="120"/>
+                    <TableColumn fx:id="colPolicyNumber" text="Policy Number" prefWidth="80"/>
+                    <TableColumn fx:id="colStartDate" text="Start Date" prefWidth="80"/>
+                    <TableColumn fx:id="colEndDate" text="End Date" prefWidth="80"/>
+                    <TableColumn fx:id="colCoverageDetails" text="Coverage Details" prefWidth="80"/>
+                </columns>
+            </TableView>
+            </TitledPane>
+
+            <!-- ===== CLAIM TABLE ===== -->
+            <TitledPane text="Insurance Claims"
+                        expanded="true">
+            <TableView fx:id="claimTable"
+                       prefHeight="250">
+                <columns>
+                    <TableColumn fx:id="colClaimId" text="Claim Id" prefWidth="80"/>
+                    <TableColumn fx:id="colPolicyIdC" text="Policy Id" prefWidth="80"/>
+                    <TableColumn fx:id="colClaimDate" text="Claim Date" prefWidth="80"/>
+                    <TableColumn fx:id="colClaimAmount" text="Claim Amount" prefWidth="120"/>
+                    <TableColumn fx:id="colStatus" text="Status" prefWidth="80"/>
+                </columns>
+            </TableView>
+            </TitledPane>
+        </VBox>
+    </center>
+    <!-- ================= RIGHT: CLAIM CRUD ================= -->
+    <right>
+        <VBox spacing="10"
+              prefWidth="320"
+              style="-fx-background-color: white; -fx-padding: 15;">
+
+            <Label text="Claim Management"
+                   style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+            <Label text="Claim Id:"
+                   style="-fx-text-fill: black; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtClaimId"
+                       promptText="Enter claim Id"/>
+
+            <Label text="Policy Id:"
+                   style="-fx-text-fill: black; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtPolicyIdClaim"
+                       promptText="Enter policy Id"/>
+
+            <Label text="Claim Date:"
+                   style="-fx-text-fill: black; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <DatePicker fx:id="dpClaimDate"
+                        promptText="Enter claim date"/>
+
+            <Label text="Claim Amount:"
+                   style="-fx-text-fill: black; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtClaimAmount"
+                      promptText="Enter claim amount"/>
+
+            <Label text="Claim Status:"
+                   style="-fx-text-fill: black; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <ComboBox fx:id="cmbStatus"
+                      promptText="Select claim status"
+                      prefWidth="250">
+
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Pending"/>
+                        <String fx:value="Approved"/>
+                        <String fx:value="Rejected"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <HBox spacing="10">
+
+                <Button text="Add"
+                        fx:id="btnAddClaim"
+                        onAction="#addClaim"
+                        style="-fx-background-color: green; -fx-font-weight: bold; -fx-text-fill: white;"/>
+
+                <Button text="Update"
+                        fx:id="btnUpdateClaim"
+                        onAction="#updateClaim"
+                        style="-fx-background-color: blue; -fx-font-weight: bold; -fx-text-fill: white;"/>
+
+                <Button text="Delete"
+                        fx:id="btnDeleteClaim"
+                        onAction="#deleteClaim"
+                        style="-fx-background-color: red; -fx-font-weight: bold; -fx-text-fill: white;"/>
+
+                <Button text="Clear"
+                        fx:id="btnClearClaim"
+                        onAction="#clearClaim"
+                        style="-fx-background-color: black; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            </HBox>
+        </VBox>
+    </right>
+</BorderPane>
+

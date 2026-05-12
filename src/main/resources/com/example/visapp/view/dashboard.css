@@ -1,0 +1,60 @@
+.menu-bar {
+    -fx-background-color: #0f172a;
+}
+
+.menu-bar .label {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.menu:hover,
+.menu:showing {
+    -fx-background-color: #1e293b;
+}
+
+.context-menu {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+}
+
+.menu-item .label {
+    -fx-text-fill: #0f172a;
+    -fx-font-size: 13px;
+}
+
+.menu-item:focused {
+    -fx-background-color: #2563eb;
+}
+
+.menu-item:focused .label {
+    -fx-text-fill: white;
+}
+
+/* PAGINATION */
+
+.pagination {
+    -fx-page-information-visible: false;
+}
+
+.pagination .pagination-control .button {
+    -fx-background-color: #1e293b;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+}
+
+.pagination .pagination-control .button:hover {
+    -fx-background-color: #2563eb;
+}
+
+.pagination .toggle-button {
+    -fx-background-color: white;
+    -fx-border-color: #cbd5e1;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+}
+
+.pagination .toggle-button:selected {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: white;
+}

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.visapp.controller.WorkshopController"
+            style="-fx-background-color: #f4f6f9;">
+
+    <!-- ================= TOP BAR ================= -->
+    <top>
+        <HBox spacing="10"
+              style="-fx-background-color: white; -fx-padding: 12;">
+
+            <Label text="Workshop and Service Management System"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <TextField fx:id="txtSearch"
+                       promptText="Search..."
+                       prefWidth="250"/>
+
+            <Button text="Search"
+                    fx:id="btnSearch"/>
+
+            <Button text="Refresh"
+                    fx:id="btnRefresh"
+                    onAction="#refreshData"/>
+
+            <Button text="Exit"
+                    fx:id="btnExit"
+                    onAction="#goDashboard"
+                    style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+
+            <Button text="Export Report"
+                    onAction="#exportVehicleReport"/>
+        </HBox>
+
+    </top>
+
+    <!-- ================= LEFT: VEHICLE CRUD ================= -->
+    <left>
+        <VBox spacing="10"
+              prefWidth="270"
+              style="-fx-background-color: #1f2a44; -fx-padding: 15;">
+
+            <Label text="Vehicle Management"
+                   style="-fx-text-fill: white;
+                          -fx-font-size: 16px;
+                          -fx-font-weight: bold;"/>
+
+            <Label text="Vehicle Id:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtVehicleId"
+                       promptText="Vehicle id"/>
+
+            <Label text="Vehicle Registration Number:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtRegNo"
+                       promptText="Enter vehicle registration number"/>
+
+            <Label text="Vehicle Make:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtMake"
+                       promptText="Enter vehicle make"/>
+
+            <Label text="Vehicle Model:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtModel"
+                       promptText="Enter vehicle model"/>
+
+            <Label text="Manufacture Year:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtYear"
+                       promptText="Enter vehicle manufacture year"/>
+
+            <Label text="Vehicle Owner:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtOwner"
+                       promptText="Enter vehicle owner id"/>
+
+            <HBox spacing="10">
+                <Button text="Add" fx:id="btnAddVehicle"
+                        onAction="#openRegisterVehicle"
+                        style="-fx-background-color: green; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Update" fx:id="btnUpdateVehicle"
+                        onAction="#openUpdateVehicle"
+                        style="-fx-background-color: blue; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Delete" fx:id="btnDeleteVehicle"
+                        onAction="#deleteVehicle"
+                        style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Clear" fx:id="btnClearVehicle"
+                        onAction="#clearVehicleForm"
+                        style="-fx-background-color: black; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </HBox>
+        </VBox>
+    </left>
+
+    <!-- ================================================= -->
+    <!-- CENTER CONTENT -->
+    <!-- ================================================= -->
+
+    <center>
+        <VBox spacing="15"
+              style="-fx-padding: 15;">
+            <!-- VEHICLE SECTION -->
+            <VBox spacing="10">
+                <Label text="Registered Vehicles"
+                       style="-fx-font-size: 22px;
+                              -fx-font-weight: bold;
+                              -fx-text-fill: #0f172a;" />
+                <!-- ===== VEHICLE TABLE ===== -->
+                <TitledPane text="Registered Vehicles"
+                            expanded="true">
+
+                <TableView fx:id="vehicleTable"
+                           prefHeight="250"
+                           >
+                    <columns>
+                        <TableColumn fx:id="colVehicleId"
+                                     text="Vehicle ID"
+                                     prefWidth="80"/>
+
+                        <TableColumn fx:id="colRegNo"
+                                     text="Registration Number"
+                                     prefWidth="140"/>
+
+                        <TableColumn fx:id="colMake"
+                                     text="Make"
+                                     prefWidth="90"/>
+
+                        <TableColumn fx:id="colModel"
+                                     text="Model"
+                                     prefWidth="90"/>
+
+                        <TableColumn fx:id="colYear"
+                                     text="Year"
+                                     prefWidth="90"/>
+
+                        <TableColumn fx:id="colOwnerId"
+                                     text="Owner"
+                                     prefWidth="80"/>
+                    </columns>
+                </TableView>
+                </TitledPane>
+            </VBox>
+
+            <!-- SERVICE RECORD SECTION -->
+            <VBox spacing="10">
+                <Label text="Vehicle Service Records"
+                       style="-fx-font-size: 22px;
+                              -fx-font-weight: bold;
+                              -fx-text-fill: #0f172a;" />
+                <!-- ===== SERVICE RECORD TABLE ===== -->
+                <TitledPane text="Service Records"
+                            expanded="true">
+                <TableView fx:id="serviceTable"
+                           prefHeight="250">
+
+                    <columns>
+                        <TableColumn fx:id="colRecordId"
+                                     text="Service ID"
+                                     prefWidth="90"/>
+
+                        <TableColumn fx:id="colVehicleIdSR"
+                                     text="Vehicle ID"
+                                     prefWidth="90"/>
+
+                        <TableColumn fx:id="colServiceDate"
+                                     text="Service Date"
+                                     prefWidth="120"/>
+
+                        <TableColumn fx:id="colServiceType"
+                                     text="Service Type"
+                                     prefWidth="120"/>
+
+                        <TableColumn fx:id="colDescription"
+                                     text="Description"
+                                     prefWidth="220"/>
+
+                        <TableColumn fx:id="colCost"
+                                     text="Cost"
+                                     prefWidth="90"/>
+                    </columns>
+                </TableView>
+                </TitledPane>
+            </VBox>
+        </VBox>
+    </center>
+
+    <!-- ================= RIGHT: SERVICE CRUD ================= -->
+    <right>
+        <VBox spacing="10"
+              prefWidth="320"
+              style="-fx-background-color: white;
+                     -fx-padding: 15;">
+
+            <Label text="Service Records Management"
+                   style="-fx-font-size: 16px;
+                          -fx-font-weight: bold;"/>
+
+            <Label text="Service Record Id:"
+                   style="-fx-text-fill: back; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtRecordId"
+                       promptText="Record ID"/>
+
+            <Label text="Vehicle Id:"
+                   style="-fx-text-fill: back; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtVehicleIdService"
+                       promptText="Enter vehicle id"/>
+
+            <Label text="Service Date:"
+                   style="-fx-text-fill: back; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <DatePicker fx:id="dpServiceDate"
+                        promptText = "Enter service date"/>
+
+            <Label text="Service Type:"
+                   style="-fx-text-fill: back; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtServiceType"
+                      promptText="Enter service type"/>
+
+            <Label text="Service Description:"
+                   style="-fx-text-fill: back; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextArea fx:id="txtServiceDescription"
+                      promptText="Enter service description"
+                      prefRowCount="4"/>
+
+            <Label text="Service Cost:"
+                   style="-fx-text-fill: back; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtCost"
+                      promptText="Enter service cost"/>
+
+
+            <HBox spacing="10">
+                <Button text="Add" fx:id="btnAddService"
+                        onAction="#openAddService"
+                        style="-fx-background-color: green; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Update" fx:id="btnUpdateService"
+                        onAction="#updateService"
+                        style="-fx-background-color: blue; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Delete" fx:id="btnDeleteService"
+                        onAction="#deleteService"
+                        style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Clear" fx:id="btnClearService"
+                        onAction="#clearServiceForm"
+                        style="-fx-background-color: black; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </HBox>
+        </VBox>
+    </right>
+</BorderPane>

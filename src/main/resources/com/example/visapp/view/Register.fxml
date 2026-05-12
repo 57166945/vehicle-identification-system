@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.visapp.controller.RegisterController"
+            prefWidth="1000"
+            prefHeight="650"
+            style="-fx-background-color: linear-gradient(to bottom right, #1f2a44, #2c3e50);">
+
+    <!-- ================================================= -->
+    <!-- LEFT SIDE -->
+    <!-- ================================================= -->
+
+    <VBox>
+
+        <VBox prefWidth="450"
+              alignment="CENTER"
+              spacing="20"
+              style="-fx-background-color: transparent;">
+
+            <padding>
+                <Insets top="40" right="40" bottom="40" left="40"/>
+            </padding>
+
+            <Label text="Vehicle Identification System"
+                   style="-fx-text-fill: white;
+                          -fx-font-size: 32px;
+                          -fx-font-weight: bold;"/>
+
+            <Label text="Create your professional VIS account"
+                   style="-fx-text-fill: #dfe6e9;
+                          -fx-font-size: 16px;"/>
+
+            <Separator prefWidth="250"/>
+
+            <Label text="Secure Vehicle Management Platform"
+                   style="-fx-text-fill: #b2bec3;
+                          -fx-font-size: 14px;"/>
+
+        </VBox>
+
+    </VBox>
+
+    <!-- ================================================= -->
+    <!-- CENTER REGISTER CARD -->
+    <!-- ================================================= -->
+
+
+            <VBox layoutX="760.0"
+                  layoutY="50.0"
+                  prefHeight="540.0"
+                  prefWidth="340.0"
+                  spacing="20"
+                  alignment="CENTER"
+                  style="-fx-background-color: white;
+                 -fx-background-radius: 20;
+                 -fx-padding: 35;">
+
+                <!-- TITLE -->
+
+                <Label text="Create Account"
+                       style="-fx-font-size: 28px;
+                              -fx-font-weight: bold;
+                              -fx-text-fill: #2c3e50;"/>
+
+                <Label text="Register a new VIS user account"
+                       style="-fx-text-fill: #7f8c8d;
+                              -fx-font-size: 13px;"/>
+
+                <!-- USERNAME -->
+                <VBox spacing="5">
+
+                    <Label text="Username"
+                           style="-fx-font-weight: bold;"/>
+
+                    <TextField fx:id="txtUsername"
+                               promptText="Enter username"
+                               prefHeight="40"
+                               style="-fx-background-radius: 10;
+                                      -fx-border-radius: 10;
+                                      -fx-border-color: #dcdde1;"/>
+                </VBox>
+
+                <!-- PASSWORD -->
+
+                <VBox spacing="5">
+
+                    <Label text="Password"
+                           style="-fx-font-weight: bold;"/>
+
+                    <PasswordField fx:id="txtPassword"
+                                   promptText="Enter password"
+                                   prefHeight="40"
+                                   style="-fx-background-radius: 10;
+                                          -fx-border-radius: 10;
+                                          -fx-border-color: #dcdde1;"/>
+                </VBox>
+
+                <!-- ROLE -->
+
+                <VBox spacing="5">
+
+                    <Label text="Role"
+                           style="-fx-font-weight: bold;"/>
+
+                    <ComboBox fx:id="cmbRole"
+                              promptText="Select role"
+                              prefWidth="350"
+                              prefHeight="40"
+                              style="-fx-background-radius: 10;
+                                     -fx-border-radius: 10;"/>
+                </VBox>
+
+                <!-- REGISTER BUTTON -->
+
+                <Button text="Register Account"
+                        onAction="#registerUser"
+                        prefWidth="350"
+                        prefHeight="45"
+                        style="-fx-background-color: #27ae60;
+                               -fx-text-fill: white;
+                               -fx-font-size: 15px;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 12;
+                               -fx-cursor: hand;"/>
+
+                <!-- LOGIN BUTTON -->
+
+                <Button text="Back to Login"
+                        onAction="#goLogin"
+                        prefWidth="350"
+                        prefHeight="40"
+                        style="-fx-background-color: #34495e;
+                               -fx-text-fill: white;
+                               -fx-font-size: 14px;
+                               -fx-background-radius: 12;
+                               -fx-cursor: hand;"/>
+            </VBox>
+
+</AnchorPane>

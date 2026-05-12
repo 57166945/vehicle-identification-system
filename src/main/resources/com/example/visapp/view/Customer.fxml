@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.visapp.controller.CustomerController"
+            style="-fx-background-color: #f4f6f9;">
+    <!-- ================= TOP BAR ================= -->
+    <top>
+        <HBox spacing="10"
+              style="-fx-background-color: white; -fx-padding: 12;">
+
+            <Label text="Customer and Customer Query Management"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <TextField promptText="Search..." prefWidth="250"/>
+            <Button text="Search"/>
+
+            <Button text="Exit"
+                    onAction="#goToDashboard"
+                    style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+        </HBox>
+    </top>
+    <!-- ================= LEFT: CUSTOMER CRUD ================= -->
+    <left>
+        <VBox spacing="10"
+              style="-fx-background-color: #1f2a44; -fx-padding: 15;"
+              prefWidth="280">
+
+            <Label text="Customer Management"
+                   style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+            <Label text="Customer Id:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtCustomerId"
+                       promptText="Customer ID"/>
+
+            <Label text="Customer Name:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtName"
+                       promptText="Enter customer full name"/>
+
+            <Label text="Customer Address:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtAddress"
+                       promptText="Enter customer address"/>
+
+            <Label text="Phone Number:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtPhone"
+                       promptText="Enter customer phone number"/>
+
+            <Label text="Customer Email:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtEmail"
+                       promptText="Enter customer email"/>
+
+            <HBox spacing="10">
+                <Button text="Add" fx:id="btnAddCustomer"
+                        onAction="#addCustomer"
+                        style="-fx-background-color: green; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Update" fx:id="btnUpdateCustomer"
+                        onAction="#updateCustomer"
+                        style="-fx-background-color: blue; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Delete" fx:id="btnDeleteCustomer"
+                        onAction="#deleteCustomer"
+                        style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Clear" fx:id="btnClearCustomer"
+                        onAction="#clearCustomer"
+                        style="-fx-background-color: black; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </HBox>
+        </VBox>
+    </left>
+
+    <!-- ================= CENTER CONTENT ================= -->
+    <center>
+        <VBox spacing="15" style="-fx-padding: 15;">
+            <Label text="Customer Module - Customers and Customer Queries"
+                   style="-fx-text-fill: blue; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+            <!-- ===== CUSTOMER TABLE ===== -->
+            <TitledPane text="Customer List" expanded="true">
+                <TableView fx:id="customerTable" prefHeight="200">
+                    <columns>
+                        <TableColumn fx:id="colCustomerId" text="Customer Id" prefWidth="90"/>
+                        <TableColumn fx:id="colName" text="Name" prefWidth="120"/>
+                        <TableColumn fx:id="colAddress" text="Address" prefWidth="150"/>
+                        <TableColumn fx:id="colContact" text="Contact" prefWidth="110"/>
+                        <TableColumn fx:id="colEmail" text="Email" prefWidth="180"/>
+                    </columns>
+                </TableView>
+            </TitledPane>
+
+            <!-- ===== CUSTOMER QUERY TABLE ===== -->
+            <TitledPane text="Customer Queries" expanded="true">
+
+                <VBox spacing="10">
+
+                    <TableView fx:id="queryTable" prefHeight="200">
+                        <columns>
+                            <TableColumn fx:id="colQueryId" text="Query Id" prefWidth="80"/>
+                            <TableColumn fx:id="colCustomerIdQ" text="Customer Id" prefWidth="100"/>
+                            <TableColumn fx:id="colVehicleIdQ" text="Vehicle Id" prefWidth="100"/>
+                            <TableColumn fx:id="colQueryDate" text="Date" prefWidth="120"/>
+                            <TableColumn fx:id="colQueryText" text="Query" prefWidth="250"/>
+                            <TableColumn fx:id="colResponse" text="Response" prefWidth="200"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </TitledPane>
+
+        </VBox>
+    </center>
+
+    <!-- ================= RIGHT: QUERY CRUD ================= -->
+    <right>
+        <VBox spacing="10"
+              style="-fx-background-color: white; -fx-padding: 15;"
+              prefWidth="300">
+
+            <Label text="Query Management"
+                   style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+            <Label text="Query Id:"
+                   style="-fx-text-fill: black; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtQueryId"
+                       promptText="Query Id"/>
+
+            <Label text="Customer Id:"
+                   style="-fx-text-fill: black; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtQueryCustomerId"
+                       promptText="Enter customer id"/>
+
+            <Label text="Vehicle Id:"
+                   style="-fx-text-fill: black; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtVehicleId"
+                       promptText="Enter vehicle id"/>
+
+            <Label text="Query Date:"
+                   style="-fx-text-fill: black; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <DatePicker fx:id="dpQueryDate"
+                        promptText="Enter query date"/>
+
+            <Label text="Query Text/Description:"
+                   style="-fx-text-fill: black; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextArea fx:id="txtQueryText"
+                      promptText="Enter query description"
+                      prefRowCount="4"/>
+
+            <Label text="Query Response:"
+                   style="-fx-text-fill: black; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtResponse"
+                      promptText="Enter response Text"/>
+
+            <HBox spacing="10">
+                <Button text="Add" fx:id="btnAddQuery" onAction="#addQuery"
+                        style="-fx-background-color: green; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Update" fx:id="btnUpdateQuery" onAction="#updateQuery"
+                        style="-fx-background-color: blue; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Delete" fx:id="btnDeleteQuery" onAction="#deleteQuery"
+                        style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Clear" fx:id="btnClearQuery"
+                        onAction="#clearQuery"
+                        style="-fx-background-color: black; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </HBox>
+        </VBox>
+    </right>
+</BorderPane>

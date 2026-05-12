@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx/21"
+            fx:controller="com.example.visapp.controller.PoliceController"
+            style="-fx-background-color: #f4f6f9;">
+    <!-- ================= TOP BAR ================= -->
+    <top>
+        <HBox spacing="10"
+              style="-fx-background-color: white; -fx-padding: 12;">
+
+            <Label text="Police Report and Violation Management"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <TextField fx:id="txtSearch"
+                       promptText="Search..."
+                       prefWidth="250"/>
+
+            <Button text="Search"
+                    fx:id="btnSearch"/>
+
+            <Button text="Exit"
+                    fx:id="btnExit"
+                    onAction="#goToDashboard"
+                    style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <!-- ================= LEFT: REPORT CRUD ================= -->
+    <left>
+        <VBox spacing="10"
+              prefWidth="280"
+              style="-fx-background-color: #1f2a44; -fx-padding: 15;">
+
+            <Label text="Police Report Management"
+                   style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+            <Label text="Report Id:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtReportId"
+                       promptText="Report Id"/>
+
+            <Label text="Vehicle Id:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtVehicleIdReport"
+                       promptText="Enter vehicle Id"/>
+
+            <Label text="Report Date:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <DatePicker fx:id="dpReportDate"
+                        promptText="Enter report date"/>
+
+            <Label text="Report Type:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <ComboBox fx:id="cmbReportType"
+                      promptText="Select Report Type">
+
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Accident"/>
+                        <String fx:value="Theft"/>
+                        <String fx:value="Inspection"/>
+                        <String fx:value="Other"/>
+                    </FXCollections>
+                </items>
+
+            </ComboBox>
+
+            <Label text="Report Description:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextArea fx:id="txtReportDescription"
+                      promptText="Enter report description..."
+                      prefRowCount="4"/>
+
+            <Label text="Officer Name:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtOfficerName"
+                       promptText="Enter officer name"/>
+
+            <Label text="Station Name:"
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtStationName"
+                       promptText="Enter station name"/>
+
+            <HBox spacing="10">
+
+                <Button text="Add"
+                        fx:id="btnAddReport"
+                        onAction="#addReport"
+                        style="-fx-background-color: green; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Update"
+                        fx:id="btnUpdateReport"
+                        onAction="#updateReport"
+                        style="-fx-background-color: blue; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Delete"
+                        fx:id="btnDeleteReport"
+                        onAction="#deleteReport"
+                        style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Clear"
+                        fx:id="btnClearReport"
+                        onAction="#clearReport"
+                        style="-fx-background-color: black; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </HBox>
+        </VBox>
+    </left>
+    <!-- =================================== -->
+    <!-- ===== CENTER CONTENT ===== -->
+    <!-- =================================== -->
+    <center>
+        <VBox spacing="15"
+              style="-fx-padding: 15;">
+            <Label text="Police Module - Reports and Violations" />
+
+            <!-- ===== REPORT TABLE ===== -->
+            <TitledPane text="Police Reports"
+                        expanded="true">
+            <TableView fx:id="reportTable" prefHeight="250">
+                <columns>
+                    <TableColumn fx:id="colReportId" text="Report ID" prefWidth="80"/>
+                    <TableColumn fx:id="colVehicleIdR" text="Vehicle ID" prefWidth="80"/>
+                    <TableColumn fx:id="colReportDate" text="Report Date" prefWidth="80"/>
+                    <TableColumn fx:id="colReportType" text="Type" prefWidth="80"/>
+                    <TableColumn fx:id="colDescription" text="Description" prefWidth="80"/>
+                    <TableColumn fx:id="colOfficerName" text="Officer Name" prefWidth="80"/>
+                    <TableColumn fx:id="colStationName" text="Station Name" prefWidth="80"/>
+                </columns>
+            </TableView>
+            </TitledPane>
+
+            <!-- ===== VIOLATION TABLE ===== -->
+            <TitledPane text="Traffic Violations"
+                        expanded="true">
+            <TableView fx:id="violationTable" prefHeight="250">
+                <columns>
+                    <TableColumn fx:id="colViolationId" text="Violation ID" prefWidth="90"/>
+                    <TableColumn fx:id="colVehicleIdV" text="Vehicle ID" prefWidth="90"/>
+                    <TableColumn fx:id="colViolationDate" text="Violation Date" prefWidth="90"/>
+                    <TableColumn fx:id="colViolationType" text="Violation Type" prefWidth="90"/>
+                    <TableColumn fx:id="colFineAmount" text="Fine Amount" prefWidth="90"/>
+                    <TableColumn fx:id="colStatus" text="Status" prefWidth="90"/>
+                </columns>
+            </TableView>
+            </TitledPane>
+        </VBox>
+    </center>
+    <!-- ================= RIGHT: VIOLATION CRUD ================= -->
+    <right>
+
+        <VBox spacing="10"
+              prefWidth="280"
+              style="-fx-background-color: white; -fx-padding: 15;">
+
+            <Label text="Violation Management"
+                   style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+            <Label text="Violation Id:"
+                   style="-fx-text-fill: black; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtViolationId"
+                       promptText="Violation ID"/>
+
+            <Label text="Vehicle Id:"
+                   style="-fx-text-fill: black; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtVehicleIdViolation"
+                       promptText="Enter vehicle Id"/>
+
+            <Label text="Violation Date:"
+                   style="-fx-text-fill: black; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <DatePicker fx:id="dpViolationDate"
+                        promptText="Enter violation date"/>
+
+            <Label text="Violation Type:"
+                   style="-fx-text-fill: black; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtViolationType"
+                       promptText="Enter violation type"/>
+
+            <Label text="Violation Fine Amount:"
+                   style="-fx-text-fill: black; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <TextField fx:id="txtFineAmount"
+                       promptText="Enter fine amount"/>
+
+            <Label text="Violation Status:"
+                   style="-fx-text-fill: black; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <ComboBox fx:id="cmbViolationStatus"
+                      promptText="Select violation status">
+
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Pending"/>
+                        <String fx:value="Paid"/>
+                        <String fx:value="Cancelled"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <HBox spacing="10">
+                <Button text="Add"
+                        fx:id="btnAddViolation"
+                        onAction="#addViolation"
+                        style="-fx-background-color: green; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Update"
+                        fx:id="btnUpdateViolation"
+                        onAction="#updateViolation"
+                        style="-fx-background-color: blue; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Delete"
+                        fx:id="btnDeleteViolation"
+                        onAction="#deleteViolation"
+                        style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                <Button text="Clear"
+                        fx:id="btnClearViolation"
+                        onAction="#clearViolation"
+                        style="-fx-background-color: black; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </HBox>
+        </VBox>
+    </right>
+</BorderPane>
+
